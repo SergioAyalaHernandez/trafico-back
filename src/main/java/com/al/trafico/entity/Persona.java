@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Entity
 @Data
 public class Persona {
+
   @Id
   private String nit;
 

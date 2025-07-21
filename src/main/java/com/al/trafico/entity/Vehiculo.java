@@ -1,11 +1,13 @@
 package com.al.trafico.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Data
 public class Vehiculo {
   @Id
   private String bastidor;
@@ -13,10 +15,6 @@ public class Vehiculo {
   private String matricula;
 
   private LocalDate fechaMatriculacion;
-
-  @ManyToOne
-  @JoinColumn(name = "marca_id")
-  private Marca marca;
 
   @ManyToOne
   @JoinColumn(name = "modelo_id")

@@ -1,8 +1,10 @@
 package com.al.trafico.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Modelo {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,7 +12,7 @@ public class Modelo {
 
   private String nombre;
 
-  private Integer potencia;
+  private String potencia;
 
   @ManyToOne
   @JoinColumn(name = "marca_id")

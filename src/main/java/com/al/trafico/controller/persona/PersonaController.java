@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/personas")
 @RequiredArgsConstructor
+@CrossOrigin("*")
 public class PersonaController {
 
   private final PersonaService personaService;
