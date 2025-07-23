@@ -1,13 +1,17 @@
 package com.al.trafico.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.time.LocalDate;
 
 @Entity
+@Data
 public class Infraccion {
   @Id
-  private String numeroExpediente;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long numeroExpediente;
 
   @ManyToOne
   private Persona persona;
@@ -25,10 +29,12 @@ public class Infraccion {
 
   private String direccion;
 
+  private Double importe;
+
+  private String estado;
+
   @ManyToOne
   private Agente agente;
 
-  @OneToOne(mappedBy = "infraccion", cascade = CascadeType.ALL)
-  private Multa multa;
 }
 

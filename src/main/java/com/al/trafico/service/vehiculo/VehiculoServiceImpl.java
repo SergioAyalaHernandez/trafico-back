@@ -7,10 +7,8 @@ import com.al.trafico.entity.PropiedadVehiculo;
 import com.al.trafico.entity.Vehiculo;
 import com.al.trafico.repository.modelo.ModeloRepository;
 import com.al.trafico.repository.persona.PersonaRepository;
-import com.al.trafico.repository.propietario.PropietarioRepository;
 import com.al.trafico.repository.vehiculo.VehiculoRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -32,7 +30,7 @@ public class VehiculoServiceImpl implements VehiculoService {
   public Vehiculo guardarVehiculo(VehiculoDTO vehiculoDTO) {
     Vehiculo vehiculo = new Vehiculo();
     vehiculo.setBastidor(vehiculoDTO.getBastidor());
-    vehiculo.setMatricula(vehiculoDTO.getMatricula());
+    vehiculo.setMatricula(vehiculoDTO.getMatricula().toUpperCase());
     vehiculo.setFechaMatriculacion(vehiculoDTO.getFechaMatriculacion());
     // Asignar modelo
     Optional<Modelo> modeloOpt = modeloRepository.findById(vehiculoDTO.getModeloId());
@@ -87,6 +85,11 @@ public class VehiculoServiceImpl implements VehiculoService {
   @Override
   public Optional<Vehiculo> obtenerVehiculoPorBastidor(String bastidor) {
     return vehiculoRepository.findById(bastidor);
+  }
+
+  @Override
+  public Optional<Vehiculo> obtenerVehiculoPorMatricula(String matricula) {
+    return vehiculoRepository.findByMatricula(matricula);
   }
 
   @Override

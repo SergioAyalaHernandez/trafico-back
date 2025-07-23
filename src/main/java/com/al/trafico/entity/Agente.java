@@ -1,25 +1,18 @@
 package com.al.trafico.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 public class Agente {
-  @Id
-  private String numeroRegistro;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-  private String nombre;
-
-  private String apellidos;
-
-  private String calle;
-
-  private String numero;
-
-  private String municipio;
-
-  private String provincia;
-
-  private String codigoPostal;
+  @OneToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "persona_id")
+  private Persona persona;
 
   @ManyToOne
   private UnidadTransito unidad;

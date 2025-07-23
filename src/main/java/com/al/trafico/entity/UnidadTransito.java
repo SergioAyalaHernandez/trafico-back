@@ -1,10 +1,13 @@
 package com.al.trafico.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
+@Data
 public class UnidadTransito {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,6 +16,7 @@ public class UnidadTransito {
   private String nombre;
 
   @OneToMany(mappedBy = "unidad")
+  @JsonIgnore
   private List<Agente> agentes;
 }
 

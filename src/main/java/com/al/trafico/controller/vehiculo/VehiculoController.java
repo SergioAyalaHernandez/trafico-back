@@ -42,6 +42,13 @@ public class VehiculoController {
             .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
+  @GetMapping("/matricula/{matricula}")
+  public ResponseEntity<Vehiculo> obtenerVehiculoPorMatricula(@PathVariable String matricula) {
+    Optional<Vehiculo> vehiculo = vehiculoService.obtenerVehiculoPorMatricula(matricula);
+    return vehiculo.map(ResponseEntity::ok)
+            .orElseGet(() -> ResponseEntity.notFound().build());
+  }
+
   @DeleteMapping("/{bastidor}")
   public ResponseEntity<Void> eliminarVehiculo(@PathVariable String bastidor) {
     vehiculoService.eliminarVehiculo(bastidor);
